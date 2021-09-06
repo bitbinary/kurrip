@@ -1,23 +1,68 @@
-import logo from './assets/logo.png';
-import logotext from './assets/logotext.png';
-import './App.css';
-import LoginButton from './components/LoginButton';
-import LogoutButton from './components/LogoutButton';
-import Profile from './components/Profile';
+import React from 'react';
+import {
+   BrowserRouter as Router,
+   Switch,
+   Route,
+   Redirect,
+} from 'react-router-dom';
+import './App.scss';
+import Dashboard from './pages/protected/Dashboard';
+import Home from './pages/public/Home';
+import { useAuth0 } from '@auth0/auth0-react';
+import Loading from './components/shared/Loading';
+// This example has 3 pages: a public page, a protected
+// page, and a login screen. In order to see the protected
+// page, you must first login. Pretty standard stuff.
+//
+// First, visit the public page. Then, visit the protected
+// page. You're not yet logged in, so you are redirected
+// to the login page. After you login, you are redirected
+// back to the protected page.
+//
+// Notice the URL change each time. If you click the back
+// button at this point, would you expect to go back to the
+// login page? No! You're already logged in. Try it out,
+// and you'll see you go back to the page you visited
+// just *before* logging in, the public page.
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <img src={logotext} className="App-logo-text" alt="logo" />
-
-        <LoginButton />
-        <LogoutButton />
-        <Profile />
-      </header>
-    </div>
-  );
+export default function AuthExample() {
+   return (
+      <Router>
+         <div>
+            <Switch>
+               <Route path='/public'>
+                  <Home />
+               </Route>
+               <Route path='/login'>
+                  <Home />
+               </Route>
+               <PrivateRoute path='/'>
+                  <Dashboard />
+               </PrivateRoute>
+            </Switch>
+         </div>
+      </Router>
+   );
 }
 
-export default App;
+function PrivateRoute({ children, ...rest }) {
+   const { isAuthenticated, isLoading } = useAuth0();
+   if (isLoading) return <Loading />;
+   return (
+      <Route
+         {...rest}
+         render={({ location }) =>
+            isAuthenticated ? (
+               children
+            ) : (
+               <Redirect
+                  to={{
+                     pathname: '/login',
+                     state: { from: location },
+                  }}
+               />
+            )
+         }
+      />
+   );
+}
