@@ -1,15 +1,16 @@
 import React from 'react';
 import {
-   BrowserRouter as Router,
-   Switch,
-   Route,
-   Redirect,
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
 } from 'react-router-dom';
 import './App.scss';
 import Dashboard from './pages/protected/Dashboard';
 import Home from './pages/public/Home';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loading from './components/shared/Loading';
+import NavBar from './components/shared/NavBar';
 // This example has 3 pages: a public page, a protected
 // page, and a login screen. In order to see the protected
 // page, you must first login. Pretty standard stuff.
@@ -26,43 +27,45 @@ import Loading from './components/shared/Loading';
 // just *before* logging in, the public page.
 
 export default function AuthExample() {
-   return (
-      <Router>
-         <div>
-            <Switch>
-               <Route path='/public'>
-                  <Home />
-               </Route>
-               <Route path='/login'>
-                  <Home />
-               </Route>
-               <PrivateRoute path='/'>
-                  <Dashboard />
-               </PrivateRoute>
-            </Switch>
-         </div>
-      </Router>
-   );
+  const { isAuthenticated } = useAuth0();
+  return (
+    <Router>
+      <div>
+        <NavBar isAuthenticated={isAuthenticated} />
+        <Switch>
+          <Route path="/public">
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Home />
+          </Route>
+          <PrivateRoute path="/">
+            <Dashboard />
+          </PrivateRoute>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 function PrivateRoute({ children, ...rest }) {
-   const { isAuthenticated, isLoading } = useAuth0();
-   if (isLoading) return <Loading />;
-   return (
-      <Route
-         {...rest}
-         render={({ location }) =>
-            isAuthenticated ? (
-               children
-            ) : (
-               <Redirect
-                  to={{
-                     pathname: '/login',
-                     state: { from: location },
-                  }}
-               />
-            )
-         }
-      />
-   );
+  const { isAuthenticated, isLoading } = useAuth0();
+  if (isLoading) return <Loading />;
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isAuthenticated ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/login',
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
 }
