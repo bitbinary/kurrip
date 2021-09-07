@@ -7,13 +7,14 @@ import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Avatar } from '@mui/material';
+import { Avatar, Button } from '@mui/material';
 import LoginButton from '../LoginButton';
+import { useHistory, NavLink as RouterNavLink } from 'react-router-dom';
 
 export default function NavBar({ isAuthenticated }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { logout, user, isLoading } = useAuth0();
-  const handleChange = (event) => {};
+  const history = useHistory();
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -59,7 +60,16 @@ export default function NavBar({ isAuthenticated }) {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
+                <MenuItem>
+                  <RouterNavLink to="/" className="nav-link" exact>
+                    Dashboard
+                  </RouterNavLink>
+                </MenuItem>
+                <MenuItem>
+                  <RouterNavLink to="/profile" className="nav-link" exact>
+                    Profile
+                  </RouterNavLink>
+                </MenuItem>
                 <MenuItem
                   onClick={() => logout({ returnTo: window.location.origin })}
                 >

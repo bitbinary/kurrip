@@ -11,6 +11,7 @@ import Home from './pages/public/Home';
 import { useAuth0 } from '@auth0/auth0-react';
 import Loading from './components/shared/Loading';
 import NavBar from './components/shared/NavBar';
+import Profile from './components/Profile';
 // This example has 3 pages: a public page, a protected
 // page, and a login screen. In order to see the protected
 // page, you must first login. Pretty standard stuff.
@@ -33,14 +34,11 @@ export default function AuthExample() {
       <div>
         <NavBar isAuthenticated={isAuthenticated} />
         <Switch>
-          <Route path="/public">
+          <PublicRoute path="/login">
             <Home />
-          </Route>
-          <Route path="/login">
-            <Home />
-          </Route>
+          </PublicRoute>
           <PrivateRoute path="/">
-            <Dashboard />
+            <ProtectedRoutes />
           </PrivateRoute>
         </Switch>
       </div>
@@ -48,6 +46,27 @@ export default function AuthExample() {
   );
 }
 
+function PublicRoute({ children, ...rest }) {
+  const { isAuthenticated, isLoading } = useAuth0();
+  if (isLoading) return <Loading />;
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        !isAuthenticated ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/',
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 function PrivateRoute({ children, ...rest }) {
   const { isAuthenticated, isLoading } = useAuth0();
   if (isLoading) return <Loading />;
@@ -67,5 +86,36 @@ function PrivateRoute({ children, ...rest }) {
         )
       }
     />
+  );
+}
+
+function ProtectedRoutes() {
+  return (
+    <Switch>
+      <Route path="/profile">
+        <Profile />
+      </Route>
+      <Route path="/">
+        <Dashboard />
+      </Route>
+      {/*  <Route path="/users">
+        <Users />
+      </Route>
+      <Route path="/forum">
+        <Forum />
+      </Route>
+      <Route path="/feeds">
+        <Forum activePage="feeds" />
+      </Route>
+      <Route path="/search">
+        <Forum activePage="search" />
+      </Route>
+      <Route path="/recommendations">
+        <Forum activePage="recommendations" />
+      </Route>
+      <Route path="/messages">
+        <Messages />
+      </Route> */}
+    </Switch>
   );
 }
