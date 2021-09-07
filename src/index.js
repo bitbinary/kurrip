@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { callbackUrl, authClientId, authDomain } from './constants/configs';
+import { ThemeProvider } from '@emotion/react';
+import { themes } from './constants/themes';
 
 ReactDOM.render(
   <Auth0Provider
@@ -13,7 +15,9 @@ ReactDOM.render(
     redirectUri={callbackUrl}
   >
     <React.StrictMode>
-      <App />
+      <ThemeProvider theme={themes}>
+        <App />
+      </ThemeProvider>
     </React.StrictMode>{' '}
   </Auth0Provider>,
   document.getElementById('root')
