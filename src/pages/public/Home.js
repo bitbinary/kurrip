@@ -7,16 +7,12 @@ import LogoutButton from '../../components/LogoutButton';
 import Profile from '../../components/Profile';
 
 export default function Home() {
-   return (
-      <div>
-         <header className='App-header'>
-            <img src={loading} className='App-logo' alt='logo' />
-            <img src={logotext} className='App-logo-text' alt='logo' />
-
-            <LoginButton />
-            <LogoutButton />
-            <Profile />
-         </header>
-      </div>
-   );
+  return (
+    <div>
+      <header className="App-header">
+        <img src={loading} className="App-logo" alt="logo" />
+        <img src={logotext} className="App-logo-text" alt="logo" />
+      </header>
+    </div>
+  );
 }
