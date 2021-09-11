@@ -6,7 +6,7 @@ const LoginButton = () => {
   const { loginWithPopup } = useAuth0();
 
   return (
-    <Button variant="dark" onClick={() => loginWithPopup()}>
+    <Button variant="secondary" onClick={() => loginWithPopup()}>
       Log In
     </Button>
   );
