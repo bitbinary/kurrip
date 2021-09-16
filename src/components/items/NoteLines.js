@@ -1,11 +1,16 @@
 import React from 'react';
 
-export default function NoteLines({ height = '376', width = '405' }) {
+export default function NoteLines({
+  height = '376',
+  width = '405',
+  position = 'absolute',
+}) {
   return (
     <div>
       <svg
         width={width}
         height={height}
+        style={{ position: position }}
         viewBox={`0 0 ${width} ${height}`}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

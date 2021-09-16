@@ -9,18 +9,18 @@ import { ThemeProvider } from '@emotion/react';
 import { lightTheme, darkTheme } from './constants/themes';
 
 ReactDOM.render(
-   <Auth0Provider
-      domain={authDomain}
-      clientId={authClientId}
-      redirectUri={callbackUrl}
-   >
-      <React.StrictMode>
-         <ThemeProvider theme={darkTheme}>
-            <App />
-         </ThemeProvider>
-      </React.StrictMode>{' '}
-   </Auth0Provider>,
-   document.getElementById('root')
+  <Auth0Provider
+    domain={authDomain}
+    clientId={authClientId}
+    redirectUri={callbackUrl}
+  >
+    <React.StrictMode>
+      <ThemeProvider theme={lightTheme}>
+        <App />
+      </ThemeProvider>
+    </React.StrictMode>
+  </Auth0Provider>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
