@@ -1,38 +1,42 @@
 import React from 'react';
-import LogoWhite from '../../assets/LogoWhite.png';
-// import logo from '../../assets/logo.png';
-import LogoTextWhite from '../../assets/LogoTextWhite.png';
+import logo from '../../assets/logo.png';
+import logoText from '../../assets/logoText.png';
 import LoginButton from '../../components/LoginButton';
 import LogoutButton from '../../components/LogoutButton';
 import Profile from '../../components/Profile';
-import { Container, Box, Grid } from '@mui/material';
-import { themes } from '../../constants/themes';
+import { Container, Box, Grid, Paper } from '@mui/material';
 import NoteLines from '../../components/items/NoteLines';
 
 export default function Home() {
-  return (
-    <div>
-      <Box sx={{ width: '100%', backgroundColor: themes.palette.primary.main }}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6} lg={6}>
-            <header className="App-header">
-              <img src={LogoWhite} className="App-logo" alt="logo" />
-              <img src={LogoTextWhite} className="App-logo-text" alt="logo" />
-            </header>
-          </Grid>
-          <Grid
-            item
-            display="flex"
-            xs={12}
-            md={6}
-            lg={6}
-            justifyContent="center"
-            alignItems="center"
-          >
-            <NoteLines />
-          </Grid>
-        </Grid>
+   return (
+      <Box sx={{ display: 'flex', flexGrow: 1 }}>
+         <Paper
+            elevation={0}
+            sx={{
+               width: '100%',
+               display: 'flex',
+               flexDirection: 'column',
+               justifyContent: 'center',
+            }}
+         >
+            <Grid container spacing={2}>
+               <Grid item xs={12} md={6} lg={6}>
+                  <img src={logo} className='App-logo' alt='logo' />
+                  <img src={logoText} className='App-logo-text' alt='logo' />
+               </Grid>
+               <Grid
+                  item
+                  display='flex'
+                  xs={12}
+                  md={6}
+                  lg={6}
+                  justifyContent='center'
+                  alignItems='center'
+               >
+                  <NoteLines />
+               </Grid>
+            </Grid>
+         </Paper>
       </Box>
-    </div>
-  );
+   );
 }

@@ -9,58 +9,44 @@ import { colors } from './colors';
 //   danger: '#FF3000',
 //   primary: '#0085FF',
 // };
-const { lightShade, darkShade, highlight, shadow } = colors;
+const { primary, secondary, info, warning, success, error } = colors;
 
-export const themes = createTheme({
-  palette: {
-    primary: {
-      main: colors.primary,
-    },
-    secondary: {
-      main: colors.secondary,
-    },
-    shadow: {
-      main: shadow,
-    },
-    highlight: {
-      main: highlight,
-    },
-  },
-  mixins: {
-    MuiButton: {
-      disableRipple: true,
-    },
-  },
-  components: {
-    MuiButton: {
-      variants: [
-        {
-          props: { variant: 'dark' },
-          style: {
-            backgroundColor: shadow,
-            color: '#F7D854',
-            textTransform: 'uppercase',
-            ':hover': {
-              backgroundColor: shadow,
+export const lightTheme = createTheme({
+   palette: {
+      mode: 'light',
+   },
+});
+export const darkTheme = createTheme({
+   palette: {
+      mode: 'dark',
+      primary: {
+         main: primary,
+      },
+      secondary: {
+         main: secondary,
+      },
+      info: {
+         main: info,
+      },
+      warning: {
+         main: warning,
+      },
+      success: {
+         main: success,
+      },
+      error: {
+         main: error,
+      },
+   },
+   components: {
+      MuiPaper: {
+         styleOverrides: {
+            // Name of the slot
+            root: {
+               // Some CSS
+               flexGrow: '1',
             },
-          },
-        },
-        {
-          props: { variant: 'secondary' },
-          style: {
-            backgroundColor: colors.secondary,
-            color: colors.primary,
-            boxShadow: '-4px 9px 8px -3px rgba(0, 0, 0, 0.11)',
-            borderRadius: '12px',
-            textTransform: 'uppercase',
-            ':hover': {
-              backgroundColor: 'transparent',
-              color: colors.secondary,
-              border: `1px solid ${colors.secondary}`,
-            },
-          },
-        },
-      ],
-    },
-  },
+         },
+      },
+   },
 });

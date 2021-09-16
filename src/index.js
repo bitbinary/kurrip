@@ -6,21 +6,21 @@ import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { callbackUrl, authClientId, authDomain } from './constants/configs';
 import { ThemeProvider } from '@emotion/react';
-import { themes } from './constants/themes';
+import { lightTheme, darkTheme } from './constants/themes';
 
 ReactDOM.render(
-  <Auth0Provider
-    domain={authDomain}
-    clientId={authClientId}
-    redirectUri={callbackUrl}
-  >
-    <React.StrictMode>
-      <ThemeProvider theme={themes}>
-        <App />
-      </ThemeProvider>
-    </React.StrictMode>{' '}
-  </Auth0Provider>,
-  document.getElementById('root')
+   <Auth0Provider
+      domain={authDomain}
+      clientId={authClientId}
+      redirectUri={callbackUrl}
+   >
+      <React.StrictMode>
+         <ThemeProvider theme={darkTheme}>
+            <App />
+         </ThemeProvider>
+      </React.StrictMode>{' '}
+   </Auth0Provider>,
+   document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
