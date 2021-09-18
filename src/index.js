@@ -7,12 +7,12 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { callbackUrl, authClientId, authDomain } from './constants/configs';
 import { ThemeProvider } from '@emotion/react';
 import { lightTheme, darkTheme } from './constants/themes';
-
 ReactDOM.render(
   <Auth0Provider
     domain={authDomain}
     clientId={authClientId}
     redirectUri={callbackUrl}
+    audience="http://localhost:3000/"
   >
     <React.StrictMode>
       <ThemeProvider theme={lightTheme}>

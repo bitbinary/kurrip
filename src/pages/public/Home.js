@@ -21,7 +21,15 @@ export default function Home() {
         }}
       >
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6} lg={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={6}
+            flexDirection="column"
+            alignItems="center"
+            display="flex"
+          >
             <img src={logo} className="App-logo" alt="logo" />
             <img src={logoText} className="App-logo-text" alt="logo" />
           </Grid>

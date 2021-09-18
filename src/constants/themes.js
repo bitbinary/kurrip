@@ -12,41 +12,41 @@ import { colors } from './colors';
 const { primary, secondary, info, warning, success, error } = colors;
 
 export const lightTheme = createTheme({
-   palette: {
-      mode: 'light',
-   },
+  palette: {
+    mode: 'light',
+  },
 });
 export const darkTheme = createTheme({
-   palette: {
-      mode: 'dark',
-      primary: {
-         main: primary,
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: primary,
+    },
+    secondary: {
+      main: secondary,
+    },
+    info: {
+      main: info,
+    },
+    warning: {
+      main: warning,
+    },
+    success: {
+      main: success,
+    },
+    error: {
+      main: error,
+    },
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          flexGrow: '1',
+        },
       },
-      secondary: {
-         main: secondary,
-      },
-      info: {
-         main: info,
-      },
-      warning: {
-         main: warning,
-      },
-      success: {
-         main: success,
-      },
-      error: {
-         main: error,
-      },
-   },
-   components: {
-      MuiPaper: {
-         styleOverrides: {
-            // Name of the slot
-            root: {
-               // Some CSS
-               flexGrow: '1',
-            },
-         },
-      },
-   },
+    },
+  },
 });
