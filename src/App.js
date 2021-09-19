@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,7 +16,6 @@ import { ApolloProvider } from '@apollo/client';
 import { ApolloClientCreator } from './utils/ApolloClient';
 
 export default function App() {
-  const [token, setToken] = useState(null);
   const { isAuthenticated } = useAuth0();
   // getAccessTokenSilently().then((token) => {
   //   setToken(token);

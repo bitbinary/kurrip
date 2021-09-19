@@ -25,3 +25,4 @@ yarn-error.log*
 src/constants/config*
 CNAME
 apollo.config*
+.env*

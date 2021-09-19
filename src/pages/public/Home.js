@@ -1,12 +1,7 @@
 import React from 'react';
 import logo from '../../assets/logo.png';
 import logoText from '../../assets/logotext.png';
-import LoginButton from '../../components/LoginButton';
-import LogoutButton from '../../components/LogoutButton';
-import Profile from '../../components/Profile';
-import { Container, Box, Grid, Paper } from '@mui/material';
-import NoteLines from '../../components/items/NoteLines';
-import LoginBox from '../../components/items/LoginBox';
+import { Box, Grid, Paper } from '@mui/material';
 
 export default function Home() {
   return (
@@ -32,19 +27,6 @@ export default function Home() {
           >
             <img src={logo} className="App-logo" alt="logo" />
             <img src={logoText} className="App-logo-text" alt="logo" />
-          </Grid>
-          <Grid
-            item
-            display="flex"
-            xs={12}
-            md={6}
-            lg={6}
-            justifyContent="center"
-            alignItems="flex-start"
-            position="relative"
-          >
-            <NoteLines />
-            <LoginBox />
           </Grid>
         </Grid>
       </Paper>

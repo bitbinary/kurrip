@@ -1,4 +1,3 @@
-import { Box } from '@mui/system';
 import React, { useEffect, useState } from 'react';
 import {
   Checkbox,
@@ -11,7 +10,7 @@ import { useMutation } from '@apollo/client';
 import { UPDATE_TODOS } from '../../constants/queries';
 export default function TodoItem({ todo }) {
   const [todoData, setTodoData] = useState(todo);
-  const [updateTodo, { data, loading, error }] = useMutation(UPDATE_TODOS);
+  const [updateTodo, { data }] = useMutation(UPDATE_TODOS);
   useEffect(() => {
     if (data) {
       setTodoData(data.update_todos_by_pk);

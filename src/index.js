@@ -4,15 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from '@auth0/auth0-react';
-import { callbackUrl, authClientId, authDomain } from './constants/configs';
+import {
+  callbackUrl,
+  authClientId,
+  authDomain,
+  audience,
+} from './constants/configs';
 import { ThemeProvider } from '@emotion/react';
+// eslint-disable-next-line no-unused-vars
 import { lightTheme, darkTheme } from './constants/themes';
 ReactDOM.render(
   <Auth0Provider
     domain={authDomain}
     clientId={authClientId}
     redirectUri={callbackUrl}
-    audience="http://localhost:3000/"
+    audience={audience}
   >
     <React.StrictMode>
       <ThemeProvider theme={darkTheme}>

@@ -1,18 +1,7 @@
-import {
-  Paper,
-  Box,
-  Checkbox,
-  Grid,
-  Typography,
-  FormControlLabel,
-  TextField,
-  Button,
-  Card,
-} from '@mui/material';
+import { Paper, Box, Typography, Card } from '@mui/material';
 import React from 'react';
-import { GET_TODOS, INSERT_TODOS } from '../../constants/queries';
-import { gql, useMutation, useQuery } from '@apollo/client';
-import TodoItem from '../../components/items/TodoItem';
+import { GET_TODOS } from '../../constants/queries';
+import { useQuery } from '@apollo/client';
 import TodoItemsCard from '../../components/items/TodoItemsCard';
 // const GET_TODOS = gql`
 //   query GetTodos {
@@ -38,7 +27,6 @@ import TodoItemsCard from '../../components/items/TodoItemsCard';
 
 export default function Dashboard() {
   const { loading, error, data } = useQuery(GET_TODOS);
-  const [insertTodo, _] = useMutation(INSERT_TODOS);
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
   return (
@@ -50,21 +38,6 @@ export default function Dashboard() {
       <Paper component={Card}>
         <TodoItemsCard todos={data.todos} />
       </Paper>
-      {/* <TextField id="new-todo-input" label="New todo" variant="outlined" />
-      <Button
-        onClick={() =>
-          insertTodo({
-            variables: {
-              title: document.getElementById('new-todo-input').value,
-            },
-          })
-        }
-        variant="contained"
-        color="primary"
-        label="Add todo"
-      >
-        Add todo
-      </Button> */}
     </Paper>
     // </Box>
   );

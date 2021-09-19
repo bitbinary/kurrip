@@ -1,15 +1,9 @@
-import {
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  Paper,
-  Typography,
-} from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import TodoItem from './TodoItem';
 
-export default function TodoItemsCard({ children, todos }) {
+export default function TodoItemsCard({ todos }) {
   return (
     <Paper p={2} container spacing={2} component={Box}>
       <Grid p={2} container spacing={2} rowSpacing={2}>
